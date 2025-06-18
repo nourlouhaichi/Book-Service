@@ -56,5 +56,4 @@ public class BookService implements IBookService{
         return restTemplate.getForObject(url, List.class);
     }
 
-
 }
