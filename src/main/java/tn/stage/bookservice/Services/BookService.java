@@ -1,6 +1,7 @@
 package tn.stage.bookservice.Services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 import tn.stage.bookservice.Entities.Book;
 import tn.stage.bookservice.Repositories.BookRepository;
 import tn.stage.bookservice.Repositories.CategoryRepository;
@@ -43,4 +44,17 @@ public class BookService implements IBookService{
     public Book retreiveBook(long id) {
         return bookRepository.findById(id).get();
     }
+
+    @Autowired
+    private RestTemplate restTemplate;
+
+    private final String REVIEW_SERVICE_URL = "http://localhost:8090/review-service";
+
+    //exemple restTemlate
+    public List<Object> getReviewsByBookId(Long bookId) {
+        String url = REVIEW_SERVICE_URL + "/review/retrieveByBook/" + bookId;
+        return restTemplate.getForObject(url, List.class);
+    }
+
+
 }
