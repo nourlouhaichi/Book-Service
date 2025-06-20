@@ -10,4 +10,6 @@ public interface IBookService {
     public List<Book> retreiveAllBooks();
     public Book retreiveBook(long id);
 
+    public Book addToLibrary(long id);
+
 }

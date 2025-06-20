@@ -45,6 +45,15 @@ public class BookService implements IBookService{
         return bookRepository.findById(id).get();
     }
 
+    @Override
+    public Book addToLibrary(long id) {
+        Book book = bookRepository.findById(id).get();
+        if (!book.isStatus())
+        book.setStatus(true);
+        else book.setStatus(false);
+        return bookRepository.save(book);
+    }
+
     @Autowired
     private RestTemplate restTemplate;
 

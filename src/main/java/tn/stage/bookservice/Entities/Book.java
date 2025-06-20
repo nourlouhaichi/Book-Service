@@ -17,9 +17,11 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long idBook;
     String title;
+    @Column(columnDefinition = "TEXT")
     String summary;
     String cover;
     String author;
+    String series;
     boolean status;
     boolean liked;
     float progress;
@@ -30,9 +32,12 @@ public class Book {
     @Column
     @Temporal(TemporalType.TIMESTAMP)
     Date end;
+    @Column
+    @Temporal(TemporalType.TIMESTAMP)
+    Date publicationInfo;
+
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JsonIgnore
     List<Category> categories;
 
 }

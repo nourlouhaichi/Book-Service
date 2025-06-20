@@ -42,4 +42,9 @@ public class BookController {
         return bookService.getReviewsByBookId(bookId);
     }
 
+    @PutMapping("/addToLibrary/{bookId}")
+    Book addToLibrary(@PathVariable Long bookId) {
+        return bookService.addToLibrary(bookId);
+    }
+
 }
