@@ -11,5 +11,6 @@ public interface IBookService {
     public Book retreiveBook(long id);
 
     public Book addToLibrary(long id);
+    public Book addToLFavorites(long id);
 
 }

@@ -54,6 +54,15 @@ public class BookService implements IBookService{
         return bookRepository.save(book);
     }
 
+    @Override
+    public Book addToLFavorites(long id) {
+        Book book = bookRepository.findById(id).get();
+        if (!book.isLiked())
+            book.setLiked(true);
+        else book.setLiked(false);
+        return bookRepository.save(book);
+    }
+
     @Autowired
     private RestTemplate restTemplate;
 
