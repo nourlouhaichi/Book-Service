@@ -5,6 +5,8 @@ import org.springframework.web.client.RestTemplate;
 import tn.stage.bookservice.Entities.Book;
 import tn.stage.bookservice.Repositories.BookRepository;
 import tn.stage.bookservice.Repositories.CategoryRepository;
+
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -74,4 +76,27 @@ public class BookService implements IBookService{
         return restTemplate.getForObject(url, List.class);
     }
 
+    @Override
+    public Book updateBookStart(Book book, Date start) {
+        book.setStart(start);
+        return bookRepository.save(book);
+    }
+
+    @Override
+    public Book updateBookEnd(Book book, Date end) {
+        book.setEnd(end);
+        return bookRepository.save(book);
+    }
+
+    @Override
+    public Book updateBookProgress(Book book, float progress) {
+        book.setProgress(progress);
+        return bookRepository.save(book);
+    }
+
+    @Override
+    public Book updateBookRating(Book book, int rating) {
+        book.setRating(rating);
+        return bookRepository.save(book);
+    }
 }

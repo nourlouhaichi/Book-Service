@@ -26,6 +26,7 @@ public class Book {
     boolean liked;
     float progress;
     int pages;
+    int rating;
     @Column
     @Temporal(TemporalType.TIMESTAMP)
     Date start;

@@ -2,6 +2,7 @@ package tn.stage.bookservice.Controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
@@ -13,6 +14,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.util.Date;
 import java.util.List;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -98,6 +100,26 @@ public class BookController {
                     .body("Erreur lors de l'ajout du livre: " + e.getMessage());
         }
     }
+    @PutMapping("/updateBookStart")
+    public Book updateBookStart(@RequestBody Book book, @RequestParam("start") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date start) {
+        return bookService.updateBookStart(book, start);
+    }
+
+    @PutMapping("/updateBookEnd")
+    public Book updateBookEnd(@RequestBody Book book, @RequestParam("end") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date end) {
+        return bookService.updateBookEnd(book, end);
+    }
+
+    @PutMapping("/updateBookProgress")
+    public Book updateBookProgress(@RequestBody Book book, @RequestParam("progress") float progress) {
+        return bookService.updateBookProgress(book, progress);
+    }
+
+    @PutMapping("/updateBookRating")
+    public Book updateBookRating(@RequestBody Book book, @RequestParam("rating") int rating) {
+        return bookService.updateBookRating(book,rating);
+    }
+
 
     // Endpoint pour servir les images
     @GetMapping("/uploads/{filename:.+}")
